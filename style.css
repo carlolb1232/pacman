@@ -1,0 +1,104 @@
+body{
+  background-color: black;
+  margin: 0;
+}
+.row{
+  line-height: 0;
+}
+.row div{
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+}
+
+.brick{
+  background-color: blue;
+}
+
+.coin{
+  background-image: url('./img/coin.gif');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+.cherry{
+  background-image: url('./img/cereza.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+.fantasma{
+  background-image: url('./img/fantasma.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  width: 20px;
+  height: 20px;
+  position: absolute;
+}
+
+#pacman{
+  background-image: url('./img/pacman.gif');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  width: 20px;
+  height: 20px;
+  position: absolute;
+}
+#pacman2{
+  background-image: url('./img/pacman2.gif');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  width: 20px;
+  height: 20px;
+  position: absolute;
+}
+
+.empty{
+  background-color: black;
+}
+
+#score{
+  border: 1px solid white;
+  width: 250px;
+  height: 20px;
+  color: white;
+  padding: 7px;
+  text-align: center;
+}
+#score2{
+  border: 1px solid white;
+  width: 250px;
+  height: 20px;
+  color: white;
+  padding: 7px;
+  text-align: center;
+}
+#lives{
+  border: 1px solid white;
+  width: 200px;
+  height: 20px;
+  color: white;
+  padding: 7px;
+  text-align: center;
+}
+#lives2{
+  border: 1px solid white;
+  width: 200px;
+  height: 20px;
+  color: white;
+  padding: 7px;
+  text-align: center;
+}
+#game-over{
+  width: 200px;
+  height: 20px;
+  color: white;
+  padding: 7px;
+  text-align: center;
+}
+
