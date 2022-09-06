@@ -19,6 +19,7 @@ let aleatorio = 0;
 let lives = 1;
 let lives2 = 2;
 
+// ESTABLECER REGLAS DEL MUNDO
 let world = [
   [2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2],
   [2,0,1,1,1,2,1,3,1,1,1,1,2,1,1,3,1,1,1,1,1,1,1,2,3,1,1,1,1,1,0,2],
@@ -42,6 +43,7 @@ let world = [
 
 // let originalWorld = world.map((array)=>array.map((element)=>element));
 
+// CREAR COPIA DEL MUNDO
 let originalWorld = world.map((a)=>{
   // console.log(a);
   return a.map((e)=>{
@@ -50,17 +52,18 @@ let originalWorld = world.map((a)=>{
   })
 }) 
 
-
+// ESTABLECER PUNTO DE ORIGEN DE PACMAN1
 let pacman = {
   x:1,
   y:1
 };
-
+// ESTABLECER PUNTO DE ORIGEN DE PACMAN2
 let pacman2 = {
   x:30,
   y:1
 };
 
+// ESTABLECER PUNTOS DE ORIGEN DE FANTASMAS
 let ghosts = [
   ghost1={
     x:17,
@@ -86,8 +89,9 @@ let ghosts = [
     x:20,
     y:2
   }
-]
+];
 
+// FUNCION PARA CREAR EL MUNDO
 function displayWorld(array) {
   let output = ''
 
@@ -112,37 +116,41 @@ function displayWorld(array) {
   domWorld.innerHTML = output;
 };
 
-
+// FUNCION PARA CREAR PACMAN1
 function displayPacman() {
   domPacman.style.top=pacman.y*20+"px";
   domPacman.style.left=pacman.x*20+"px";
 };
+// FUNCION PARA CREAR PACMAN2
 function displayPacman2() {
   domPacman2.style.top=pacman2.y*20+"px";
   domPacman2.style.left=pacman2.x*20+"px";
 };
-
+// FUNCION PARA CREAR FANTASMAS
 function displayGhosts() {
   for (let i = 0; i < domFantasmaArray.length; i++) {
     domFantasmaArray[i].style.top=ghosts[i].y*20+"px";
     domFantasmaArray[i].style.left=ghosts[i].x*20+"px";
   }
 };
-
+// FUNCION PARA MOSTRAR PUNTAJE DE PACMAN1
 function displayScore() {
   domScore.innerHTML = `El jugador 1 tiene: ${score} puntos`;
 }
+// FUNCION PARA MOSTRAR PUNTAJE DE PACMAN2
 function displayScore2() {
   domScore2.innerHTML = `El jugador 2 tiene: ${score2} puntos`;
 }
-
+// FUNCION PARA MOSTRAR VIDAS DEL PACMAN1
 function displayLives() {
   domLives.innerHTML = `El jugador 1 tiene ${lives} vidas`;
 }
+// FUNCION PARA MOSTRAR VIDAS DEL PACMAN2
 function displayLives2() {
   domLives2.innerHTML = `El jugador 2 tiene ${lives2} vidas`;
 }
 
+// FUNCION PARA MOVER LOS FANTASMAS ALEATORIAMENTE
 function moveGhosts() {
   for (let i = 0; i < ghosts.length; i++) {
     aleatorio = Math.random()
@@ -161,89 +169,8 @@ function moveGhosts() {
   }
 }
 
-function ghostsLoop() {
-  moveGhosts();
-  displayGhosts();
-}
-
-displayWorld(world);
-displayGhosts();
-displayPacman();
-displayPacman2();
-displayScore();
-displayScore2();
-displayLives();
-displayLives2();
-
-setInterval(ghostsLoop, 1000);
-
-document.onkeydown = function (e) {
-  console.log(e.keyCode);
-  // Izquierda
-  if (e.keyCode ==37 && world[pacman.y][pacman.x-1] != 2) {
-    pacman.x--;
-  }
-  // Derecha
-  if (e.keyCode ==39 && world[pacman.y][pacman.x+1] != 2) {
-    pacman.x++;
-  }
-  // Arriba
-  if (e.keyCode ==38 && world[pacman.y-1][pacman.x] != 2) {
-    pacman.y--;
-  }
-  // Abajo
-  if (e.keyCode ==40 && world[pacman.y+1][pacman.x] != 2) {
-    pacman.y++;
-  }
-  // A
-  if (e.keyCode == 65 && world[pacman2.y][pacman2.x-1] != 2) {
-    pacman2.x--;
-  }
-  // D
-  if (e.keyCode ==68 && world[pacman2.y][pacman2.x+1] != 2) {
-    pacman2.x++;
-  }
-  // W
-  if (e.keyCode ==87 && world[pacman2.y-1][pacman2.x] != 2) {
-    pacman2.y--;
-  }
-  // S
-  if (e.keyCode ==83 && world[pacman2.y+1][pacman2.x] != 2) {
-    pacman2.y++;
-  }
-
-  if (world[pacman.y][pacman.x]== 1) {
-    world[pacman.y][pacman.x] = 0;
-    score+=10;
-    displayWorld(world);
-    displayScore();
-  }
-  
-  if (world[pacman2.y][pacman2.x]== 1) {
-    world[pacman2.y][pacman2.x] = 0;
-    score2+=10;
-    displayWorld(world);
-    displayScore2();
-  }
-
-
-  if (world[pacman.y][pacman.x]== 3) {
-    world[pacman.y][pacman.x] = 0;
-    score+=50;
-    displayWorld(world);
-    displayScore();
-  }
-  if (world[pacman2.y][pacman2.x]== 3) {
-    world[pacman2.y][pacman2.x] = 0;
-    score2+=50;
-    displayWorld(world);
-    displayScore2();
-  }
-  
-
-  displayPacman();
-  displayPacman2();
-
+// FUNCION PARA DETECTAR SI UN FANTASMA Y UN PACMAN CHOCARON
+function detectarColision() {
   for (let i = 0; i < ghosts.length; i++) {
     if( pacman.x == ghosts[i].x && pacman.y == ghosts[i].y){
       pacman.x = 1;
@@ -270,5 +197,99 @@ document.onkeydown = function (e) {
       }
     }
   }
+}
+
+// FUNCION QUE ENCAPSULA EL COMPORTAMIENTO DE LOS FANTASMAS
+function ghostsLoop() {
+  moveGhosts();
+  displayGhosts();
+  detectarColision();
+}
+
+displayWorld(world);
+displayGhosts();
+displayPacman();
+displayPacman2();
+displayScore();
+displayScore2();
+displayLives();
+displayLives2();
+
+// FUNCION PARA QUE LOS FANTASMAS SE MUEVAN SOLOS
+setInterval(ghostsLoop, 1000);
+
+// FUNCION PARA DETECTAR EL TECLADO
+document.onkeydown = function (e) {
+  // console.log(e.keyCode);
+  // MOVER PRIMER PACMAN
+  // Izquierda
+  if (e.keyCode ==37 && world[pacman.y][pacman.x-1] != 2) {
+    pacman.x--;
+  }
+  // Derecha
+  if (e.keyCode ==39 && world[pacman.y][pacman.x+1] != 2) {
+    pacman.x++;
+  }
+  // Arriba
+  if (e.keyCode ==38 && world[pacman.y-1][pacman.x] != 2) {
+    pacman.y--;
+  }
+  // Abajo
+  if (e.keyCode ==40 && world[pacman.y+1][pacman.x] != 2) {
+    pacman.y++;
+  }
+  // MOVER SEGUNDO PACMAN
+  // A
+  if (e.keyCode == 65 && world[pacman2.y][pacman2.x-1] != 2) {
+    pacman2.x--;
+  }
+  // D
+  if (e.keyCode ==68 && world[pacman2.y][pacman2.x+1] != 2) {
+    pacman2.x++;
+  }
+  // W
+  if (e.keyCode ==87 && world[pacman2.y-1][pacman2.x] != 2) {
+    pacman2.y--;
+  }
+  // S
+  if (e.keyCode ==83 && world[pacman2.y+1][pacman2.x] != 2) {
+    pacman2.y++;
+  }
+
+  // OBTENER PUNTOS PARA PRIMER PACMAN
+  if (world[pacman.y][pacman.x]== 1) {
+    world[pacman.y][pacman.x] = 0;
+    score+=10;
+    displayWorld(world);
+    displayScore();
+  }
+  if (world[pacman.y][pacman.x]== 3) {
+    world[pacman.y][pacman.x] = 0;
+    score+=50;
+    displayWorld(world);
+    displayScore();
+  }
+  
+  
+  // OBTENER PUNTOS PARA SEGUNDO PACMAN
+  if (world[pacman2.y][pacman2.x]== 1) {
+    world[pacman2.y][pacman2.x] = 0;
+    score2+=10;
+    displayWorld(world);
+    displayScore2();
+  }
+  if (world[pacman2.y][pacman2.x]== 3) {
+    world[pacman2.y][pacman2.x] = 0;
+    score2+=50;
+    displayWorld(world);
+    displayScore2();
+  }
+  
+
+  displayPacman();
+  displayPacman2();
+
+  detectarColision();
+
   
 }
