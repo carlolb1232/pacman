@@ -40,28 +40,16 @@ let world = [
   [2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2],
 ];
 
-let originalWorld = [...world];
+// let originalWorld = world.map((array)=>array.map((element)=>element));
 
-// let originalWorld = [
-//   [2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2],
-//   [2,0,1,1,1,2,1,3,1,1,1,1,2,1,1,3,1,1,1,1,1,1,1,2,3,1,1,1,1,1,0,2],
-//   [2,1,1,1,1,2,1,1,1,1,1,3,2,1,1,1,1,1,1,1,0,1,1,2,1,1,1,1,1,1,1,2],
-//   [2,1,1,2,2,2,1,1,1,1,1,1,2,1,1,1,1,1,1,1,1,1,1,2,1,1,1,2,2,2,2,2],
-//   [2,1,1,1,1,2,2,2,2,0,1,1,2,2,2,2,1,1,1,1,1,1,3,2,1,1,1,1,1,3,1,2],
-//   [2,1,1,3,1,1,3,1,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,1,1,1,0,1,1,1,2],
-//   [2,1,1,1,1,1,1,1,2,1,1,1,1,1,1,1,1,1,1,1,1,3,1,2,1,1,1,1,1,1,1,2],
-//   [2,1,1,1,1,1,1,1,2,1,1,1,1,1,1,1,1,1,1,1,2,2,2,2,1,1,1,1,1,1,1,2],
-//   [2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2],
-//   [2,1,1,1,1,1,1,1,1,1,1,1,3,1,1,2,1,1,1,1,3,1,1,1,1,1,1,1,1,1,1,2],
-//   [2,2,2,2,2,2,1,1,1,1,1,1,1,1,1,2,1,1,1,1,1,0,1,1,2,2,2,2,2,2,2,2],
-//   [2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,1,1,1,1,1,1,1,1,2,1,1,1,1,1,1,2],
-//   [2,1,1,1,1,1,1,1,1,1,1,1,2,2,2,2,2,2,1,1,1,1,1,1,2,1,1,1,1,1,1,2],
-//   [2,1,0,1,1,1,1,1,1,1,1,1,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,3,1,1,1,2],
-//   [2,1,1,1,2,1,1,1,1,1,1,1,2,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,2],
-//   [2,1,1,1,2,1,3,1,1,1,1,1,2,1,1,3,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2],
-//   [2,1,3,1,2,1,1,1,1,1,1,1,2,3,1,1,1,1,1,1,3,1,1,1,1,1,1,1,1,1,1,2],
-//   [2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2],
-// ];
+let originalWorld = world.map((a)=>{
+  // console.log(a);
+  return a.map((e)=>{
+    // console.log(e);
+    return e
+  })
+}) 
+
 
 let pacman = {
   x:1,
@@ -173,6 +161,11 @@ function moveGhosts() {
   }
 }
 
+function ghostsLoop() {
+  moveGhosts();
+  displayGhosts();
+}
+
 displayWorld(world);
 displayGhosts();
 displayPacman();
@@ -181,6 +174,8 @@ displayScore();
 displayScore2();
 displayLives();
 displayLives2();
+
+setInterval(ghostsLoop, 1000);
 
 document.onkeydown = function (e) {
   console.log(e.keyCode);
@@ -245,8 +240,6 @@ document.onkeydown = function (e) {
     displayScore2();
   }
   
-  moveGhosts();
-  displayGhosts();
 
   displayPacman();
   displayPacman2();
@@ -261,7 +254,7 @@ document.onkeydown = function (e) {
       if (lives == 0) {
         domGameOver.innerHTML = "JUEGO TERMINADO GANO EL JUGADOR 2"
         displayWorld(originalWorld);
-        console.log(originalWorld);
+        setTimeout(()=>location.reload(),1000)
       }
     }
     if( pacman2.x == ghosts[i].x && pacman2.y == ghosts[i].y){
@@ -273,6 +266,7 @@ document.onkeydown = function (e) {
       if (lives2 == 0) {
         domGameOver.innerHTML = "JUEGO TERMINADO GANO EL JUGADOR 1"
         displayWorld(originalWorld);
+        setTimeout(()=>location.reload(),1000)
       }
     }
   }
