@@ -7,6 +7,7 @@ let domFantasma = document.getElementsByClassName("fantasma");
 let domGameOver = document.getElementById("game-over");
 let domLives = document.getElementById("lives");
 let domLives2 = document.getElementById("lives2");
+let domSelect = document.getElementById("dificulty")
 
 let domFantasmaArray = Array.prototype.slice.call(domFantasma,0)
 let score = 0;
@@ -18,6 +19,8 @@ let aleatorio = 0;
 
 let lives = 1;
 let lives2 = 2;
+
+let velocidad = 1000;
 
 // ESTABLECER REGLAS DEL MUNDO
 let world = [
@@ -90,6 +93,22 @@ let ghosts = [
     y:2
   }
 ];
+
+function changeDificulty() {
+  console.log(domSelect.value);
+  if (domSelect.value == 1) {
+    velocidad = 1000;
+  }
+  if (domSelect.value == 2) {
+    velocidad = 600
+  }
+  if (domSelect.value == 3) {
+    velocidad = 400
+  }
+
+  setInterval(ghostsLoop, velocidad);
+
+}
 
 // FUNCION PARA CREAR EL MUNDO
 function displayWorld(array) {
@@ -204,6 +223,7 @@ function ghostsLoop() {
   moveGhosts();
   displayGhosts();
   detectarColision();
+  console.log(velocidad);
 }
 
 displayWorld(world);
@@ -216,7 +236,7 @@ displayLives();
 displayLives2();
 
 // FUNCION PARA QUE LOS FANTASMAS SE MUEVAN SOLOS
-setInterval(ghostsLoop, 1000);
+// setInterval(ghostsLoop, velocidad);
 
 // FUNCION PARA DETECTAR EL TECLADO
 document.onkeydown = function (e) {

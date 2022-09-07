@@ -1,6 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
 body{
   background-color: black;
   margin: 0;
+  font-family: 'Press Start 2P', monospace;
 }
 .row{
   line-height: 0;
@@ -63,32 +66,31 @@ body{
 }
 
 #score{
-  border: 1px solid white;
-  width: 250px;
+  width: 450px;
   height: 20px;
   color: white;
   padding: 7px;
   text-align: center;
 }
 #score2{
-  border: 1px solid white;
-  width: 250px;
+  
+  width: 450px;
   height: 20px;
   color: white;
   padding: 7px;
   text-align: center;
 }
 #lives{
-  border: 1px solid white;
-  width: 200px;
+  
+  width: 400px;
   height: 20px;
   color: white;
   padding: 7px;
   text-align: center;
 }
 #lives2{
-  border: 1px solid white;
-  width: 200px;
+  
+  width: 400px;
   height: 20px;
   color: white;
   padding: 7px;
@@ -101,4 +103,14 @@ body{
   padding: 7px;
   text-align: center;
 }
+
+#dicultyLabel{
+  color: white;
+}
+
+select{
+  font-family: 'Press Start 2P', monospace;
+  background-color: green;
+}
+
 
