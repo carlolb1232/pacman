@@ -107,6 +107,14 @@ function changeDificulty() {
   }
 
   setInterval(ghostsLoop, velocidad);
+  displayWorld(world);
+  displayGhosts();
+  displayPacman();
+  displayPacman2();
+  displayScore();
+  displayScore2();
+  displayLives();
+  displayLives2();
 
 }
 
@@ -226,14 +234,7 @@ function ghostsLoop() {
   console.log(velocidad);
 }
 
-displayWorld(world);
-displayGhosts();
-displayPacman();
-displayPacman2();
-displayScore();
-displayScore2();
-displayLives();
-displayLives2();
+
 
 // FUNCION PARA QUE LOS FANTASMAS SE MUEVAN SOLOS
 // setInterval(ghostsLoop, velocidad);

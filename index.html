@@ -11,6 +11,13 @@
 <body>
   <div id="container">
     <div id="world">
+      <label for="dificulty" id="dicultyLabel">SELECCIONE SU DIFUCULTAD</label>
+      <select name="difuculty" id="dificulty" onchange="changeDificulty()">
+        <option selected disabled>ELIJA LA DIFUCULTAD PARA INICIAR</option>
+        <option value="1">FÁCIL</option>
+        <option value="2">MEDIA</option>
+        <option value="3">DIFÍCIL</option>
+      </select>
     </div>
     <div id="pacman"></div>
     <div id="pacman2"></div>
@@ -31,12 +38,5 @@
     <div id="game-over">
     </div>
   </div>
-  <label for="dificulty" id="dicultyLabel">SELECCIONE SU DIFUCULTAD</label>
-  <select name="difuculty" id="dificulty" onchange="changeDificulty()">
-    <option selected disabled>ELIJA LA DIFUCULTAD PARA INICIAR</option>
-    <option value="1">FÁCIL</option>
-    <option value="2">MEDIA</option>
-    <option value="3">DIFÍCIL</option>
-  </select>
 </body>
 </html>
